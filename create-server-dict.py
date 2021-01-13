@@ -28,7 +28,13 @@ def setDefinition(data):
 
     dictionary[key] = value
     return key + ' has been set'
-    
+
+def getAll():
+    return json.dumps(dictionary)
+
+def clearDict():
+    dictionary.clear()
+    return 'dictionary has been cleared'
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -46,6 +52,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
             if "SET" in dataReq:
                 dataReq = setDefinition(dataReq)
+
+            if "ALL" in dataReq:
+                dataReq = getAll()
+            
+            if "CLEAR" in dataReq:
+                dataReq = clearDict()
+                print(dictionary)
 
             if not data:
                 break
