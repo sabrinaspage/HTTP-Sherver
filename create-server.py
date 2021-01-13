@@ -7,9 +7,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
     conn, addr = s.accept() # socket object and address info returned
+                            # blocked (suspended) when waiting for a client connection
     with conn:
         print('Connected by', addr)
-        while True:
+        while True: # infinite loop
             data = conn.recv(1024)
             if not data:
                 break
