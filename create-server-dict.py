@@ -23,8 +23,8 @@ def getWord(data):
 def setDefinition(data):
     data = data.partition("SET" + " ")[2]
     splitData = data.split('-')
-    key = splitData[0]
-    value = splitData[1]
+    key = splitData[0].strip()
+    value = splitData[1].strip()
 
     dictionary[key] = value
     return key + ' has been set'
@@ -52,6 +52,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
             if "SET" in dataReq:
                 dataReq = setDefinition(dataReq)
+                print(dictionary)
 
             if "ALL" in dataReq:
                 dataReq = getAll()
