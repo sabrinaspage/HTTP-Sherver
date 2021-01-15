@@ -2,9 +2,6 @@ import selectors
 import socket
 import types
 
-HOST = '127.0.0.1'
-PORT = 65432 
-
 sel = selectors.DefaultSelector()
 
 def service_connection(key, mask):
